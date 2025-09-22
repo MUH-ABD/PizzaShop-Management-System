@@ -1,37 +1,33 @@
-# 🍕 PizzaHut Order Management System
+# PizzaHut Order Management System
 
 A C# Windows Forms application to manage PizzaHut customer orders, including pizza, salads, and drinks. Built with **MySQL** backend, **ClosedXML** for Excel exports, and organized modules for Active & Delivered customers.
 
 ---
 
-## 📦 Features
+## Features
 
-- 📝 Admin Login
-- 🛒 Add/Update/Delete Orders
-- 🍕 Manage Pizzas, Sizes, Salads, and Drinks
-- 📋 Order Status: Preparing → Ready → Delivered
-- 📁 Export Delivered Orders to Excel
-- 🗂 Archive Delivered Orders
-- 📅 Filter Orders by Delivery Date
-- 📊 Total Sales and Orders Summary
+- Admin Login
+- Add/Update/Delete Orders
+- Manage Pizzas, Sizes, Salads, and Drinks
+- Order Status: Preparing → Ready → Delivered
+- Export Delivered Orders to Excel
+- Archive Delivered Orders
+- Filter Orders by Delivery Date
+- Total Sales and Orders Summary
 
----
-
-## 🛠 Tech Stack
+## Tech Stack
 
 - Language: **C# (.NET WinForms)**
 - Database: **MySQL**
 - Export: **ClosedXML (No Excel Interop Needed)**
 - UI: **DataGridView**, **DateTimePicker**, **RadioButtons**
 
----
-# 🍕 Pizza Order System - MySQL Database Setup
+# Pizza Order System - MySQL Database Setup
 
 This README contains complete SQL setup for the `pizza_order_db` database. Follow the steps to create and populate your database for use with your pizza ordering application.
 
----
 
-## 🔧 Step 1: Create Database & Use It
+## Step 1: Create Database & Use It
 ```sql
 CREATE DATABASE IF NOT EXISTS pizza_order_db;
 USE pizza_order_db;
@@ -39,7 +35,7 @@ USE pizza_order_db;
 
 ---
 
-## 👤 Users Table (For Admin Login)
+## Users Table (For Admin Login)
 ```sql
 CREATE TABLE Users (
     UserID INT AUTO_INCREMENT PRIMARY KEY,
@@ -50,9 +46,7 @@ CREATE TABLE Users (
 INSERT INTO Users (Username, Password) VALUES ('admin', 'admin');
 ```
 
----
-
-## 🍕 Pizza Tables
+## Pizza Tables
 ```sql
 CREATE TABLE PizzaFlavors (
     PizzaID INT AUTO_INCREMENT PRIMARY KEY,
@@ -78,9 +72,8 @@ CREATE TABLE PizzaPrices (
 );
 ```
 
----
 
-## 🥤 Drink Tables
+## Drink Tables
 ```sql
 CREATE TABLE DrinkCategories (
     CategoryID INT AUTO_INCREMENT PRIMARY KEY,
@@ -114,9 +107,8 @@ CREATE TABLE DrinkPrices (
 );
 ```
 
----
 
-## 🥗 Salad Tables
+## Salad Tables
 ```sql
 CREATE TABLE Salads (
     SaladID INT AUTO_INCREMENT PRIMARY KEY,
@@ -132,9 +124,8 @@ CREATE TABLE SaladSizes (
 );
 ```
 
----
 
-## 📦 Orders Table
+## Orders Table
 ```sql
 CREATE TABLE Orders (
     OID INT AUTO_INCREMENT PRIMARY KEY,
@@ -150,9 +141,8 @@ CREATE TABLE Orders (
 );
 ```
 
----
 
-## 🧾 Order Item Tables
+## Order Item Tables
 ```sql
 CREATE TABLE OrderPizzas (
     OrderPizzaID INT AUTO_INCREMENT PRIMARY KEY,
@@ -191,9 +181,8 @@ CREATE TABLE OrderSalads (
 );
 ```
 
----
 
-## 📥 Sample Data Insertion
+## Sample Data Insertion
 ```sql
 -- Pizza Sizes
 INSERT INTO PizzaSizes (SizeName, SizeMultiplier) VALUES 
@@ -231,9 +220,7 @@ INSERT INTO SaladSizes (SizeName, SizeMultiplier) VALUES
 ('Small', 0.7), ('Medium', 1.0), ('Large', 1.3);
 ```
 
----
-
-## 🧮 Auto Pricing
+## Auto Pricing
 ```sql
 -- Pizza Prices
 INSERT INTO PizzaPrices (PizzaID, SizeID, FinalPrice)
@@ -255,9 +242,7 @@ FROM DrinkItems d
 CROSS JOIN DrinkSizes ds;
 ```
 
----
-
-## ✅ Sample Order Generation (100 Delivered Orders)
+## Sample Order Generation (100 Delivered Orders)
 ```sql
 -- Clear previous data
 SET FOREIGN_KEY_CHECKS = 0;
@@ -339,10 +324,9 @@ DROP TEMPORARY TABLE IF EXISTS TempRandomOrders;
 DROP TEMPORARY TABLE IF EXISTS TempRandomDrinks;
 DROP TEMPORARY TABLE IF EXISTS TempRandomSalads;
 ```
-✅ Now your database is ready with **100 sample delivered orders** including pizzas, drinks, and salads. This is ideal for testing filtering, archiving, and Excel export features in your Pizza Management System.
+Now your database is ready with **100 sample delivered orders** including pizzas, drinks, and salads. This is ideal for testing filtering, archiving, and Excel export features in your Pizza Management System.
 
-
-## 📂 Folder Structure
+## Folder Structure
 
 ```plaintext
 pizza/
@@ -378,12 +362,12 @@ OrderStatus	Preparing / Ready / Delivered
 DeliveredAt	DateTime of delivery
 IsArchived	Flag if exported
 
-🧪 Sample Admin Login
+Sample Admin Login
 sql
 Copy
 Edit
 INSERT INTO Users (Username, Password) VALUES ('admin', 'admin');
-✅ How to Run
+How to Run
 Import the full SQL file into MySQL
 
 Set your connection string in App.config or DeliveredOrders.cs
@@ -392,7 +376,7 @@ Build and run the app from Visual Studio
 
 Start from Login.cs
 
-📤 Excel Export
+Excel Export
 Uses ClosedXML
 
 Automatically saves to Desktop
@@ -407,35 +391,35 @@ Total Orders/Sales displayed on UI
 
 Automatically archives exported orders
 
-🔒 Archive Logic
+Archive Logic
 After export:
 
 Orders with OrderStatus = Delivered are updated with IsArchived = 1
 
 Archived orders don’t appear again in future exports
 
-📅 Filtering by Date
-Use DateTimePicker with checkbox enabled
+Filtering by Date
+Use DateTimePicker with a checkbox enabled
 
 Filters by DeliveredAt range
 
-🔧 Dependencies
+Dependencies
 ClosedXML
 
 MySql.Data (MySQL Connector)
 
 .NET Framework (WinForms App)
 
-🧼 Maintenance Tip
-You can safely delete records from database manually or schedule cleanup on archived orders.
+Maintenance Tip
+You can safely delete records from the database manually or schedule a cleanup on archived orders.
 
-📌 Notes
-Use Port 3307 if MySQL is installed with custom config.
+Notes
+Use Port 3307 if MySQL is installed with a custom config.
 
 App uses DeliveredOrders_{yyyy-MM-dd_HH-mm}.xlsx format.
 
-Add company logo manually in Excel if needed.
+Add the company logo manually in Excel if needed.
 
-💬 Questions?
-Feel free to improve, add printing, receipts, or online order integration later.
-Built with 💻 C# and ❤️ Pizza.
+Questions?
+Please feel free to add printing, receipts, or online order integration later.
+Built with  C# and ❤ Pizza.
